@@ -33,3 +33,7 @@ class DBManager(object):
     def write(self, df, dbname, mode='a'):
         if_exist = 'append' if mode == 'a' else 'replace'
         df.to_sql(dbname, self.engine, if_exists=if_exist, index=False)
+
+    def read(self, dbname , limit=None):
+        return pd.read_sql("select * from {0}".format(dbname), self.engine)
+

@@ -13,7 +13,6 @@ from utils.db import DBManager
 
 db = DBManager()
 
-
 def plot_valuation_report():
     df = db.read("valuation_report")
     x, y = df['name'].values.tolist(), df['rate'].values.tolist()
@@ -34,8 +33,8 @@ def plot_valuation_report():
             .set_global_opts(title_opts=opts.TitleOpts(title=title, subtitle=subtitle))
             .reversal_axis()
     )
-    make_snapshot(snapshot, bar.render(), "{title}.png".format(title=title))
-
+    make_snapshot(snapshot, bar.render(), "output/{title}.png".format(title=title))
+    return "output/{title}.png".format(title=title)
 
 if __name__ == '__main__':
     plot_valuation_report()

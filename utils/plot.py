@@ -69,9 +69,9 @@ def plot_all():
 
     page = Page()
     page.add(chart1, chart2)
-    output_path = os.path.join(PROJECT_DIR, "utils/output/每日指标.html")
+    output_path = os.path.join(PROJECT_DIR, "utils/output/统计指标.html")
     page.render(output_path)
-    return "utils/output/每日指标.html"
+    return "utils/output/统计指标.html"
 
 
 if __name__ == '__main__':

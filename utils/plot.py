@@ -52,7 +52,7 @@ def tail_axqh():
     df = db.read("tail_zxqh").tail(30)
     line = (
 
-        Line(init_opts={"height": "600px", "width": "900", "theme": ThemeType.DARK})
+        Line(init_opts={"height": "600px", "width": "900", "theme": ThemeType.WHITE})
             .add_xaxis(df['day'].values.tolist())
             .add_yaxis("多单", df['buy_inc'].values.tolist())
             .add_yaxis("空单", df['sell_inc'].values.tolist())

@@ -7,8 +7,6 @@ from datetime import datetime
 from pyecharts.charts import Bar, Page, Line
 from pyecharts import options as opts  # 一切皆 Options
 from pyecharts.globals import ThemeType
-from pyecharts.render import make_snapshot
-from snapshot_selenium import snapshot
 from utils.db import DBManager
 from config import PROJECT_DIR
 import os

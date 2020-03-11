@@ -54,6 +54,7 @@ def tail_axqh():
             .add_xaxis(df['day'].values.tolist())
             .add_yaxis("多单", df['buy_inc'].values.tolist())
             .add_yaxis("空单", df['sell_inc'].values.tolist())
+            .add_yaxis("多-空", (df['buy_inc'] - df['sell_inc']).values.tolist())
             .set_series_opts(label_opts=opts.LabelOpts(font_size=8),
 
                              )

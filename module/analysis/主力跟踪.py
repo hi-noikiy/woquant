@@ -15,6 +15,7 @@ df = finance.run_query(
         finance.FUT_MEMBER_POSITION_RANK.day == datetime.now().strftime("%Y%m%d"),
         finance.FUT_MEMBER_POSITION_RANK.member_name == '中信期货')
 )
+
 if len(df) == 0:
     exit(0)
 inc = df['indicator_increase']

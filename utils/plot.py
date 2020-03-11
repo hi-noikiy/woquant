@@ -49,10 +49,10 @@ def tail_axqh():
     中信期货跟踪
     :return:
     """
-    df = db.read("tail_zxqh").tail(30)
+    df = db.read("tail_zxqh").tail(25)
     line = (
 
-        Line(init_opts={"height": "600px", "width": "900", "theme": ThemeType.WHITE})
+        Line(init_opts={"height": "500px", "width": "500", "theme": ThemeType.WHITE})
             .add_xaxis(df['day'].values.tolist())
             .add_yaxis("多单", df['buy_inc'].values.tolist())
             .add_yaxis("空单", df['sell_inc'].values.tolist())

@@ -7,7 +7,7 @@ import pandas as pd
 from module.source.jqdata import JQData
 from config import PROJECT_DIR
 from utils.db import DBManager
-from utils.plot import plot_valuation_report
+from utils.plot import valuation_report
 
 # 配置文件
 jq_data = JQData()
@@ -18,5 +18,3 @@ stock_pool['rate'] = stock_pool.apply(lambda x: round((x.close - x.price) / x.pr
 stock_pool.sort_values(by='rate', ascending=False, inplace=True)
 db.write(stock_pool[['name', 'tag', 'price', 'close', 'rate']], 'valuation_report', mode='w')
 
-# 生成图片
-plot_valuation_report()

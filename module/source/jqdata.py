@@ -33,11 +33,15 @@ class JQData(object):
         return query_count
 
     def get_price(self, stock, start_date=None, end_date=None, count=None, frequency='daily'):
+        if not end_date:
+            end_date = self.current_date()
         return jq.get_price(jq.normalize_code(stock),
                             start_date=start_date,
                             end_date=end_date,
                             count=count,
-                            frequency=frequency)
+                            frequency=frequency,
+                            panel=False
+                            )
 
     def current_minute(self):
         return datetime.now().strftime("%Y-%m-%d %H:%M:%S")
@@ -56,10 +60,15 @@ class JQData(object):
                               count=1,
                               frequency='minute')['close'][0]
 
-    def get_all_price(self):
+    def get_lastest_tradeday(self):
         return jq.get_trade_days(start_date=None, end_date=None, count=1)
+
+    def get_all_stocks(self, date=None):
+        if not date:
+            date = self.current_date()
+        return jq.get_all_securities(date=date)
+
 
 if __name__ == '__main__':
     jq_data = JQData(conf.get("JQData", "username"), conf.get("JQData", "password"))
     # print(jq_data.get_realtime_price('600741'))
-    print(jq_data.get_all_price())

@@ -13,7 +13,7 @@ jq = JQData()
 
 stocks = jq.get_all_stocks().reset_index()
 stocks_list = stocks['index'].values.tolist()
-stocks_price = jq.get_price(stocks_list, count=1)
+stocks_price = jq.get_price(stocks_list, count=2)
 df = stocks.merge(stocks_price, left_on='index', right_on='code')
 print(df.head())
 print(df.columns)

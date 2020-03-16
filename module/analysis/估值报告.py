@@ -27,7 +27,7 @@ def run():
     plot_all()
 
 
-schedule.every(10).minutes.do(run)
+schedule.every().hour.at(":30").do(run)
 while True:
     schedule.run_pending()
     time.sleep(1)

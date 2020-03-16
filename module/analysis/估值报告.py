@@ -4,6 +4,7 @@
 
 # 高抛低吸是赚不了大钱的，只有持有+复利，好股票+好价格，仓位管理 才能赚大钱！
 """
+import sys
 import os, time
 import schedule
 import pandas as pd
@@ -27,7 +28,11 @@ def run():
     plot_all()
 
 
-schedule.every().hour.at(":30").do(run)
-while True:
-    schedule.run_pending()
-    time.sleep(1)
+if __name__ == '__main__':
+    if len(sys.argv) > 1 and sys.argv[1] == 1:
+        run()
+        exit(0)
+    schedule.every().hour.at(":30").do(run)
+    while True:
+        schedule.run_pending()
+        time.sleep(1)

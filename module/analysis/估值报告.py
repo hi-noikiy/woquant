@@ -29,7 +29,7 @@ def run():
 
 
 if __name__ == '__main__':
-    if len(sys.argv) > 1 and sys.argv[1] == 1:
+    if len(sys.argv) > 0 and sys.argv[0] == 1:
         run()
         exit(0)
     schedule.every().hour.at(":30").do(run)

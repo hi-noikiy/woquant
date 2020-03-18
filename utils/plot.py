@@ -31,7 +31,7 @@ def valuation_report():
             .set_series_opts(
             label_opts=opts.LabelOpts(position="right"),
             markline_opts=opts.MarkLineOpts(
-                data=[opts.MarkLineItem(x=12, name=""), opts.MarkLineItem(x=6, name="")],
+                data=[opts.MarkLineItem(x=8, name=""), opts.MarkLineItem(x=3, name="")],
                 linestyle_opts={'color': 'rgb(220, 20, 60)'}
             )
         )

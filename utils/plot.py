@@ -47,7 +47,7 @@ def tail_axqh():
     中信期货跟踪
     :return:
     """
-    df = db.read("tail_zxqh").tail(25)
+    df = db.read("tail_zxqh").sort_values(by='day').tail(25)
     line = (
 
         Line(init_opts={"height": "500px", "width": "500", "theme": ThemeType.WHITE})

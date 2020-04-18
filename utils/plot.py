@@ -55,6 +55,7 @@ def tail_axqh():
             .add_yaxis("多单", df['buy_inc'].values.tolist())
             .add_yaxis("空单", df['sell_inc'].values.tolist())
             .add_yaxis("多-空", (df['buy_inc'] - df['sell_inc']).values.tolist(), is_selected=False)
+            .add_yaxis("净额", (df['buy'] - df['sell']).values.tolist(), is_selected=False)
             .set_series_opts(label_opts=opts.LabelOpts(font_size=8))
             .set_global_opts(title_opts=opts.TitleOpts(title="主力跟踪-中信期货", subtitle=datetime.now().strftime("%Y%m%d")),
                              xaxis_opts=opts.AxisOpts(axislabel_opts=opts.LabelOpts(font_size=8, rotate=30)))

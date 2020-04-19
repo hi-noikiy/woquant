@@ -86,7 +86,7 @@ def tail_northup():
         label_opts=opts.LabelOpts(is_show=False),
     )
     c = c.set_global_opts(
-        title_opts=opts.TitleOpts(title="北上资金流入流出"),
+        title_opts=opts.TitleOpts(title="主力跟踪-北上资金", subtitle=datetime.now().strftime("%Y%m%d")),
         xaxis_opts=opts.AxisOpts(
             axistick_opts=opts.AxisTickOpts(is_align_with_label=True),
             is_scale=False,
@@ -101,6 +101,7 @@ def plot_all():
     chart1 = valuation_report()
     chart2 = tail_northup()
     chart3 = tail_axqh()
+
 
     page = Page()
     page.add(chart1, chart2, chart3)

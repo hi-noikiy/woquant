@@ -27,7 +27,6 @@ def run():
 
     plot_all()
 
-
 if __name__ == '__main__':
     if len(sys.argv) > 1 and sys.argv[1] == '1':
         run()

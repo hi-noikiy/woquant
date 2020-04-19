@@ -49,7 +49,6 @@ def tail_axqh():
     """
     df = db.read("tail_zxqh").sort_values(by='day').tail(25)
     line = (
-
         Line(init_opts={"height": "500px", "width": "500", "theme": ThemeType.WHITE})
             .add_xaxis(df['day'].values.tolist())
             .add_yaxis("多单", df['buy_inc'].values.tolist())
@@ -63,12 +62,48 @@ def tail_axqh():
     return line
 
 
+def tail_northup():
+    """
+    北上资金跟踪
+    :return:
+    """
+    df = db.read("tail_northup")
+    result_df = df.set_index(['day', 'name']).unstack('name')['share_ratio']
+    rs_df = ((result_df - result_df.shift()).fillna(0) * 100).applymap(lambda x: round(x))
+    selected = sorted(list(rs_df.iloc[-1].items()), key=lambda x: x[1], reverse=True)[0][0]
+    import pyecharts.options as opts
+    from pyecharts.charts import Line
+
+    c = Line()
+    c = c.add_xaxis(rs_df.index.tolist())
+
+    for key in rs_df:
+        is_selected = key == selected
+        c = c.add_yaxis(key, rs_df[key].values.tolist(), is_smooth=True, is_selected=is_selected)
+
+    c = c.set_series_opts(
+        areastyle_opts=opts.AreaStyleOpts(opacity=0.5),
+        label_opts=opts.LabelOpts(is_show=False),
+    )
+    c = c.set_global_opts(
+        title_opts=opts.TitleOpts(title="北上资金流入流出"),
+        xaxis_opts=opts.AxisOpts(
+            axistick_opts=opts.AxisTickOpts(is_align_with_label=True),
+            is_scale=False,
+            boundary_gap=False,
+        ),
+        legend_opts=opts.LegendOpts(pos_left=100, pos_top=50)
+    )
+    return c
+
+
 def plot_all():
     chart1 = valuation_report()
-    chart2 = tail_axqh()
+    chart2 = tail_northup()
+    chart3 = tail_axqh()
 
     page = Page()
-    page.add(chart1, chart2)
+    page.add(chart1, chart2, chart3)
     output_path = os.path.join(PROJECT_DIR, "utils/output/统计指标.html")
     page.render(output_path)
     return "utils/output/统计指标.html"

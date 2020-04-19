@@ -23,12 +23,12 @@ def run():
     df=finance.run_query(Query(finance.STK_HK_HOLD_INFO).filter(
         or_(finance.STK_HK_HOLD_INFO.link_id==i  for i in  [310001 , 310002] ),
         or_(finance.STK_HK_HOLD_INFO.code==i  for i in stocks ),
-        finance.STK_HK_HOLD_INFO.day ==date_id
+        finance.STK_HK_HOLD_INFO.day >=date_id
     ))[['day','name','share_ratio']]
     df['day'] = df['day'].map(lambda x : datetime.strftime(x,"%Y%m%d"))
 
     trade_day = finance.run_query(Query(finance.STK_EXCHANGE_LINK_CALENDAR).filter(
-        finance.STK_EXCHANGE_LINK_CALENDAR.day==date_id,
+        finance.STK_EXCHANGE_LINK_CALENDAR.day>=date_id,
         or_(finance.STK_EXCHANGE_LINK_CALENDAR.link_id==i  for i in [310001 , 310002] ))
     )[['day','type']].drop_duplicates()
     trade_day['day'] = trade_day['day'].map(lambda x : datetime.strftime(x,"%Y%m%d"))

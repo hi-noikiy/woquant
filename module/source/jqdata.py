@@ -68,6 +68,14 @@ class JQData(object):
             date = self.current_date()
         return jq.get_all_securities(date=date)
 
+    def normalize_code(self, stock_code):
+        """
+        规范化为聚宽格式的代码
+        :param stock_code:  000001
+        :return:  000001.XSHE
+        """
+        return jq.normalize_code(stock_code)
+
 
 if __name__ == '__main__':
     jq_data = JQData(conf.get("JQData", "username"), conf.get("JQData", "password"))

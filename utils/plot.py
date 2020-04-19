@@ -71,8 +71,6 @@ def tail_northup():
     result_df = df.set_index(['day', 'name']).unstack('name')['share_ratio']
     rs_df = ((result_df - result_df.shift()).fillna(0) * 100).applymap(lambda x: round(x))
     selected = sorted(list(rs_df.iloc[-1].items()), key=lambda x: x[1], reverse=True)[0][0]
-    import pyecharts.options as opts
-    from pyecharts.charts import Line
 
     c = Line()
     c = c.add_xaxis(rs_df.index.tolist())

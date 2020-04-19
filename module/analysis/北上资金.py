@@ -44,7 +44,7 @@ if __name__ == '__main__':
     if len(sys.argv) > 1 and sys.argv[1] == '1':
         run()
         exit(0)
-    # 配置每天20:10执行
+    # 配置每天07:00执行
     schedule.every().day.at("07:00").do(run)
 
     while True:

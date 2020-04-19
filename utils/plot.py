@@ -42,12 +42,12 @@ def valuation_report():
     return bar
 
 
-def tail_axqh():
+def tail_zxqh():
     """
     中信期货跟踪
     :return:
     """
-    df = db.read("tail_zxqh").sort_values(by='day').tail(25)
+    df = db.read("tail_zxqh_v2").sort_values(by='day').tail(25)
     line = (
         Line(init_opts={"height": "500px", "width": "500", "theme": ThemeType.WHITE})
             .add_xaxis(df['day'].values.tolist())
@@ -100,7 +100,7 @@ def tail_northup():
 def plot_all():
     chart1 = valuation_report()
     chart2 = tail_northup()
-    chart3 = tail_axqh()
+    chart3 = tail_zxqh()
 
 
     page = Page()
